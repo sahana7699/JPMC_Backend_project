@@ -1,0 +1,16 @@
+general:
+  kafka-topic: ${GENERAL_KAFKA_TOPIC:transactions}
+
+spring:
+  kafka:
+    consumer:
+      group-id: midas-core
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.value.default.type: com.jpmc.midascore.foundation.Transaction
+        spring.json.trusted.packages: "*"
+
+server:
+  port: 33400
